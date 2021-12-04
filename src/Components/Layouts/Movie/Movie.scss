@@ -1,0 +1,14 @@
+@import "../../Scss/variable";
+// .movies {
+//   padding: 30px;
+// }
+.select {
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $active-color;
+}
+img {
+  width: 80px;
+}

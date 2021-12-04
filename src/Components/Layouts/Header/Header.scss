@@ -1,0 +1,32 @@
+@import "../../Scss/variable";
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  position: fixed;
+  background-color: $side-color;
+  z-index: 99;
+  color: $text-color;
+  &-left {
+    span {
+      font-size: 20px;
+    }
+  }
+  &-right {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  @media screen and(max-width:767px) {
+    height: 58px;
+    &-left {
+      span {
+        display: none;
+      }
+    }
+    &-right {
+      display: none;
+    }
+  }
+}

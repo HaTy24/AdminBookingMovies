@@ -1,0 +1,64 @@
+@import "./variable";
+
+.label {
+  color: white;
+  font-size: 18px;
+  margin-left: 30px;
+}
+@media screen and (max-width: 767px) {
+  .label {
+    color: white;
+    font-size: 18px;
+    display: block;
+    margin-left: 0px;
+    margin-bottom: 5px;
+  }
+}
+.form {
+  position: relative;
+  &-group {
+    display: flex;
+    gap: 10px;
+  }
+  &-input {
+    padding: 8px 10px;
+    background-color: #fff59d;
+    color: #000;
+    border: none;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &-button {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #8bc34a;
+    padding: 8px 10px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+  }
+  .fa-print {
+    font-size: 18px;
+    margin-left: 8px;
+  }
+
+  @media screen and(max-width:767px) {
+    flex-direction: column;
+    margin-bottom: 5px;
+    gap: 0px;
+    &-group {
+      gap: 0px;
+      flex-direction: column;
+    }
+    &-input {
+      padding: 3px 5px;
+    }
+    &-button {
+      top: -16px;
+    }
+  }
+}
