@@ -43,30 +43,6 @@
   .active {
     background-color: $active-color;
   }
-  &-dropdown {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 20px;
-  }
-  .dropdown {
-    position: relative;
-    display: block;
-  }
-  &-dropbtn {
-    background-color: transparent;
-    color: $text-color;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    i {
-      font-size: 20px;
-      padding-left: 10px;
-    }
-  }
-  &-content {
-    position: absolute;
-    display: none;
-  }
   &-item {
     color: $text-color;
     display: flex;
@@ -144,9 +120,9 @@
 .fa-bars {
   cursor: pointer;
   position: fixed;
-  top: 18px;
+  top: 22px;
   left: 30px;
-  font-size: 20px;
+  font-size: 25px;
   color: $text-color;
   z-index: 999;
 }

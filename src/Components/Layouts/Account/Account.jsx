@@ -68,8 +68,9 @@ function Account() {
         ></input>
         <i className="fas fa-search"></i>
       </div>
+      <h1 className="title">Quản Lý Tài Khoản</h1>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 1280 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
@@ -81,7 +82,7 @@ function Account() {
               <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{ backgroundColor: "#dfdfdf" }}>
             {value
               .filter((val) => {
                 if (input === "") {

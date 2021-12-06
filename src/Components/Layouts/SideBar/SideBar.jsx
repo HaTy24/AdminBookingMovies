@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SideBar.scss";
-import { useLocation } from "react-router";
-import { mode } from "crypto-js";
 
 function Navbar() {
   useEffect(() => {
@@ -16,26 +14,6 @@ function Navbar() {
       });
     });
   });
-  // useEffect(() => {
-  //   const dropdonw = document.querySelectorAll(".sidebar-dropdown");
-  //   const dropbtn = document.querySelectorAll(".sidebar-content");
-  //   dropdonw.forEach((item, i) => {
-  //     item.addEventListener("click", (e) => {
-  //       dropbtn.forEach((btn, j) => {
-  //         i === j
-  //           ? dropbtn[j].classList.toggle("dropdown")
-  //           : console.log("sai");
-  //       });
-  //     });
-  //   });
-  // });
-  // document.body.addEventListener("click", hanldeDelete());
-  // setTimeout(function hanldeDelete(){
-
-  // }, 5000);
-  // function hanldeDelete() {
-  //   console.log("ddddd");
-  // }
 
   const handleToggleSidebar = () => {
     document.querySelector(".sidebar").classList.toggle("visible");

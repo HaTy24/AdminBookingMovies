@@ -63,11 +63,12 @@ function Revenue() {
 
   return (
     <div>
+      <h1 className="title">Doanh Thu Theo Tháng</h1>
       <div className="form">
         <ReactToPrint
           trigger={() => (
             <button className="form-button">
-              In Hóa Đơn
+              In Doanh Thu
               <i className="fas fa-print"></i>
             </button>
           )}
@@ -104,10 +105,9 @@ function Revenue() {
                 <StyledTableCell align="center">Ngày Chiếu</StyledTableCell>
                 <StyledTableCell align="center">Giờ Bắt Đầu</StyledTableCell>
                 <StyledTableCell align="center">Giá Vé</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{ backgroundColor: "#dfdfdf" }}>
               {value
                 .filter((item) => {
                   if (input === "") {
@@ -152,7 +152,6 @@ function Revenue() {
                       <StyledTableCell align="center">
                         {item.idChiTietChieuNavigation.giaVe + " VNĐ"}
                       </StyledTableCell>
-                      <StyledTableCell></StyledTableCell>
                     </StyledTableRow>
                   );
                 })}

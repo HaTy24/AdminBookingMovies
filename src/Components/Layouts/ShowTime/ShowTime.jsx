@@ -172,8 +172,9 @@ function Suat_Chieu() {
         ></input>
         <i className="fas fa-search"></i>
       </div>
+      <h1 className="title">Quản Lý Suất Chiếu</h1>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 1280 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
@@ -185,7 +186,7 @@ function Suat_Chieu() {
               <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{ backgroundColor: "#dfdfdf" }}>
             {value
               .filter((val) => {
                 if (input === "") {
@@ -253,7 +254,7 @@ function Suat_Chieu() {
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ color: "red", textTransform: "uppercase" }}>
-          Chỉnh sửa thông tin phim
+          Chỉnh sửa Suất chiếu
         </DialogTitle>
         <DialogContent>
           <label htmlFor="idPhim">Tên Phim</label>

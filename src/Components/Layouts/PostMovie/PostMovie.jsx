@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import BaseUrl from "../../api/BaseURL";
-// import "./PostMovie.scss";
 import "../../Scss/post.scss";
 
 function PostMovie() {
   const [value, setValue] = useState({
     idtl: "",
     tenphim: "",
-    thoiluong: "",
+    thoiLuong: "",
     image: "",
+    hour: "1",
+    minutes: "0",
     trailer: "",
     des: "",
   });
@@ -42,7 +43,7 @@ function PostMovie() {
       : Axios.post(BaseUrl.baseUrl + "/Phim", {
           idTheLoai: parseInt(value.idtl),
           tenPhim: value.tenphim,
-          thoiLuong: value.thoiluong,
+          thoiLuong: value.hour + "h" + value.minutes,
           image: value.image,
           trailer: value.trailer + "!!!" + value.des,
         })
@@ -51,6 +52,8 @@ function PostMovie() {
               idtl: "",
               tenphim: "",
               thoiluong: "",
+              hour: "1",
+              minutes: "0",
               image: "",
               trailer: "",
               des: "",
@@ -61,70 +64,90 @@ function PostMovie() {
             console.log(error);
           });
   };
+
+  const arr = [];
+  for (let i = 0; i <= 59; i++) {
+    arr.push(i);
+  }
   return (
-    <div className="postMovie">
-      <form onSubmit={(e) => handlePost(e)}>
-        <label htmlFor="idtl">Thể loại</label>
-        <select
-          className="postMovie-input"
-          id="idtl"
-          onChange={(e) => {
-            handleValue(e);
-          }}
-        >
-          <option>-- Chọn thể loại --</option>
-          {result.map((item, i) => {
-            return (
-              <option key={i} value={item.idTheLoai}>
-                {item.tenTheLoai}
-              </option>
-            );
-          })}
-        </select>
-        <label htmlFor="tenphim">Tên phim</label>
-        <input
-          id="tenphim"
-          onChange={(e) => handleValue(e)}
-          type="text"
-          className="postMovie-input"
-          value={value.tenphim}
-        />
-        <label htmlFor="thoiluong">Thời lượng</label>
-        <input
-          id="thoiluong"
-          onChange={(e) => handleValue(e)}
-          type="text"
-          className="postMovie-input"
-          value={value.thoiluong}
-        />
-        <label htmlFor="image">Hình ảnh</label>
-        <input
-          id="image"
-          onChange={(e) => handleValue(e)}
-          type="text"
-          className="postMovie-input"
-          value={value.image}
-        />
-        <label htmlFor="trailer">Trailer</label>
-        <input
-          id="trailer"
-          onChange={(e) => handleValue(e)}
-          type="text"
-          className="postMovie-input"
-          value={value.trailer}
-        />
-        <label htmlFor="des">Mô tả</label>
-        <input
-          id="des"
-          onChange={(e) => handleValue(e)}
-          type="text"
-          className="postMovie-input"
-          value={value.des}
-        />
-        <button className="postMovie-btn">Post</button>
-      </form>
-      <img style={{ display: "block" }} src={img} alt="" />
-    </div>
+    <>
+      <h1 className="title">Thêm Phim Mới</h1>
+      <div className="postMovie">
+        <form onSubmit={(e) => handlePost(e)}>
+          <label htmlFor="idtl">Thể loại</label>
+          <select
+            className="postMovie-input"
+            id="idtl"
+            value={value.idtl}
+            onChange={(e) => {
+              handleValue(e);
+            }}
+          >
+            <option>-- Chọn thể loại --</option>
+            {result.map((item, i) => {
+              return (
+                <option key={i} value={item.idTheLoai}>
+                  {item.tenTheLoai}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="tenphim">Tên phim</label>
+          <input
+            id="tenphim"
+            onChange={(e) => handleValue(e)}
+            type="text"
+            className="postMovie-input"
+            value={value.tenphim}
+          />
+          <label htmlFor="thoiluong">Thời lượng</label>
+          <select
+            id="hour"
+            value={value.hour}
+            style={{ padding: "5px 8px" }}
+            onChange={(e) => handleValue(e)}
+          >
+            <option>1</option>;<option>2</option>;
+          </select>
+          <select
+            id="minutes"
+            style={{ padding: "5px 8px" }}
+            value={value.minutes}
+            onChange={(e) => handleValue(e)}
+          >
+            {arr.map((item, i) => {
+              return <option key={i}>{item}</option>;
+            })}
+          </select>
+          <label htmlFor="image">Hình ảnh</label>
+          <input
+            id="image"
+            onChange={(e) => handleValue(e)}
+            type="text"
+            className="postMovie-input"
+            value={value.image}
+          />
+          <label htmlFor="trailer">Trailer</label>
+          <input
+            id="trailer"
+            onChange={(e) => handleValue(e)}
+            type="text"
+            className="postMovie-input"
+            value={value.trailer}
+          />
+          <label htmlFor="des">Mô tả</label>
+          <input
+            id="des"
+            onChange={(e) => handleValue(e)}
+            type="text"
+            className="postMovie-input"
+            value={value.des}
+          />
+          <button className="postMovie-btn">Thêm Phim</button>
+        </form>
+        <img style={{ display: "block" }} src={img} alt="" />
+      </div>
+    </>
   );
 }
 

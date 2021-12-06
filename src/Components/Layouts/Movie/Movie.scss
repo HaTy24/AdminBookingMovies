@@ -2,13 +2,32 @@
 // .movies {
 //   padding: 30px;
 // }
+.title {
+  padding: 0 30px;
+  font-size: 30px;
+  color: $side-color;
+  margin-bottom: 25px;
+  border-bottom: 3px solid $side-color;
+}
 .select {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   outline: none;
   border: none;
   border-bottom: 1px solid $active-color;
 }
 img {
   width: 80px;
+}
+
+label {
+  margin-top: 10px;
+  color: red;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    padding: 0 10px;
+    font-size: 25px;
+  }
 }

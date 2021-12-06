@@ -95,7 +95,7 @@ function Ticket() {
         ></input>
         <i className="fas fa-search"></i>
       </div>
-
+      <h1 className="title">Doanh Thu Theo Phim</h1>
       <div className="print">
         <input
           className="form-input"
@@ -103,7 +103,7 @@ function Ticket() {
           value={"Tổng Tiền: " + totalPrice + " VNĐ"}
         />
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table sx={{ minWidth: 1280 }} aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>ID</StyledTableCell>
@@ -117,7 +117,7 @@ function Ticket() {
                 <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{ backgroundColor: "#dfdfdf" }}>
               {value
                 .filter((val) => {
                   if (input === "") {

@@ -11,7 +11,10 @@
 }
 
 body {
-  background: #01172c;
+  background-image: url("https://images.all-free-download.com/images/graphiclarge/movie_time_background_colored_cine_projector_icon_6828755.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 li {
@@ -26,20 +29,21 @@ a {
   padding-top: 50px;
 }
 .pages {
-  padding-top: 4%;
+  padding: 30px;
+  padding-top: 3%;
 }
 .logout {
   cursor: pointer;
   position: fixed;
   border: none;
   background-color: transparent;
-  top: 15px;
+  top: 22px;
   right: 30px;
   z-index: 999;
 }
 .fa-sign-out-alt {
   transition: all 0.3 linear;
-  color: white;
+  color: #000;
   font-size: 25px;
   &:hover {
     transform: scale(1.1);
@@ -50,7 +54,7 @@ a {
 .search {
   width: 30%;
   position: fixed;
-  top: 10px;
+  top: 12px;
   left: 50%;
   z-index: 999;
   display: flex;
@@ -59,9 +63,9 @@ a {
 .search-input {
   width: 100%;
   outline: none;
-  border-top: 1px solid $active-color;
-  border-bottom: 1px solid $active-color;
-  border-left: 1px solid $active-color;
+  border-top: 2px solid $active-color;
+  border-bottom: 2px solid $active-color;
+  border-left: 2px solid $active-color;
   border-right: none;
   padding: 8px 15px;
   border-radius: 8px 0 0 8px;
@@ -70,23 +74,21 @@ a {
 .fa-search {
   font-size: 20px;
   color: $active-color;
-  border-top: 1px solid $active-color;
-  border-bottom: 1px solid $active-color;
-  border-right: 1px solid $active-color;
-  border-right: none;
+  border-top: 2px solid $active-color;
+  border-bottom: 2px solid $active-color;
+  border-right: 2px solid $active-color;
+  border-left: none;
   padding: 8px 10px;
   border-radius: 0 8px 8px 0;
   background-color: white;
 }
 
 @media screen and(max-width:1023px) {
-  * {
-    font-size: 14px;
-  }
   .App {
     padding-top: 30px;
   }
   .pages {
+    padding: 20px;
     margin-top: 6%;
   }
 }
@@ -95,9 +97,11 @@ a {
     padding-top: 20px;
   }
   .pages {
+    padding: 10px;
     margin-top: 12%;
   }
   .search {
+    left: 56%;
     width: 50%;
   }
   .search-input {

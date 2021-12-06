@@ -4,12 +4,18 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 80px;
+  padding: 10px 80px;
   position: fixed;
   background-color: $side-color;
   z-index: 99;
   color: $text-color;
   &-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+      width: 60px;
+    }
     span {
       font-size: 20px;
     }
@@ -18,13 +24,15 @@
     font-size: 20px;
     text-transform: uppercase;
   }
-  @media screen and(max-width:767px) {
-    height: 58px;
+  @media screen and(max-width:1023px) {
     &-left {
       span {
         display: none;
       }
     }
+  }
+  @media screen and(max-width:767px) {
+    padding: 10px 60px;
     &-right {
       display: none;
     }

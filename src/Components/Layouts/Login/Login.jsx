@@ -53,7 +53,13 @@ export default function SignIn({ login, nameUser }) {
     }
   };
   return (
-    <div style={{ height: "100vh", backgroundColor: "#c8e6c9" }}>
+    <div
+      style={{
+        height: "100vh",
+        backgroundImage: `url("https://thumbs.dreamstime.com/z/people-watching-movie-cinema-audience-cartoon-person-sitting-back-man-woman-theater-empty-screen-crowd-rear-vector-195693714.jpg")`,
+        backgroundSize: "cover",
+      }}
+    >
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -65,7 +71,7 @@ export default function SignIn({ login, nameUser }) {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+            <Avatar sx={{ m: 1 }}></Avatar>
             <Typography
               component="h1"
               variant="h5"

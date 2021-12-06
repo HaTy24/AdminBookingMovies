@@ -128,7 +128,6 @@ function GetMovie() {
       des: item.trailer.split("!!!")[1],
       trailer: item.trailer.split("!!!")[0],
     });
-    console.log(data);
   };
 
   const handleClose = () => {
@@ -153,8 +152,9 @@ function GetMovie() {
         ></input>
         <i className="fas fa-search"></i>
       </div>
+      <h1 className="title">Phim Đang Chiếu</h1>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 1280 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
@@ -167,7 +167,7 @@ function GetMovie() {
               <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{ backgroundColor: "#dfdfdf" }}>
             {value
               .filter((val) => {
                 if (input === "") {
@@ -178,6 +178,7 @@ function GetMovie() {
                     .toLowerCase()
                     .includes(input.toLowerCase())
                 ) {
+                  console.log(val);
                   return val;
                 }
               })
@@ -200,7 +201,7 @@ function GetMovie() {
                       <img src={item.image} alt="" />
                     </StyledTableCell>
                     <StyledTableCell align="left">
-                      {/* <iframe
+                      <iframe
                         width="200"
                         height="155"
                         src={`https://www.youtube.com/embed/${
@@ -210,7 +211,7 @@ function GetMovie() {
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
-                      ></iframe> */}
+                      ></iframe>
                     </StyledTableCell>
                     <StyledTableCell>
                       {item.trailer.split("!!!")[1]}
@@ -268,23 +269,23 @@ function GetMovie() {
               );
             })}
           </select>
+          <label>Tên Phim</label>
           <TextField
             fullWidth
             variant="filled"
-            label="Tên phim"
             id="tenphim"
             onChange={(e) => handlePutChange(e)}
             defaultValue={dialog.tenPhim}
           ></TextField>
+          <label>Thời lượng</label>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "8px",
               marginTop: "8px",
             }}
           >
-            <label>Thời lượng</label>
             <select
               defaultValue={dialog.thoiLuong.split("h")[0]}
               id="hour"
@@ -304,30 +305,29 @@ function GetMovie() {
               })}
             </select>
           </div>
+          <label>Hình Ảnh</label>
           <TextField
-            label="Hình ảnh"
             fullWidth
             variant="filled"
             id="image"
             onChange={(e) => handlePutChange(e)}
             defaultValue={dialog.image}
           ></TextField>
-          {/* <img src={img} alt="" /> */}
+          <label>Trailer</label>
           <TextField
-            label="Trailer"
             fullWidth
             variant="filled"
             id="trailer"
             onChange={(e) => handlePutChange(e)}
             defaultValue={dialog.trailer.split("!!!")[0]}
           ></TextField>
+          <label>Mô Tả</label>
           <TextField
-            label="Mô tả"
             fullWidth
             variant="filled"
             id="des"
             onChange={(e) => handlePutChange(e)}
-            defaultValue={parseInt(dialog.trailer.split("!!!")[1])}
+            defaultValue={dialog.trailer.split("!!!")[1]}
           ></TextField>
         </DialogContent>
         <DialogActions>
