@@ -18,18 +18,13 @@ function Ticket() {
 
   const [reload, setReload] = useState(); //load lai trang
   const [totalPrice, setTotalPrice] = useState(0);
-  // const [reload, setReload] = useState();
   useEffect(() => {
     fetch(BaseUrl.baseUrl + "/Ve")
       .then((response) => response.json())
       .then((data) => setValue(data));
   }, [reload]);
-  // const handleGet = () => {
-  //   setReload(Math.random());
-  // };
   const handleSearch = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {
@@ -39,7 +34,8 @@ function Ticket() {
       } else if (
         e.idChiTietChieuNavigation.idPhimNavigation.tenPhim
           .toLowerCase()
-          .includes(input.toLowerCase())
+          .includes(input.toLowerCase()) ||
+        e.idUserNavigation.hoTen.toLowerCase().includes(input.toLowerCase())
       ) {
         return e;
       }
@@ -124,6 +120,9 @@ function Ticket() {
                     return val;
                   } else if (
                     val.idChiTietChieuNavigation.idPhimNavigation.tenPhim
+                      .toLowerCase()
+                      .includes(input.toLowerCase()) ||
+                    val.idUserNavigation.hoTen
                       .toLowerCase()
                       .includes(input.toLowerCase())
                   ) {

@@ -282,7 +282,7 @@ function GetMovie() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "3px",
               marginTop: "8px",
             }}
           >

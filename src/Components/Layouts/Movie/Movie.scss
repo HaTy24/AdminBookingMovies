@@ -3,11 +3,13 @@
 //   padding: 30px;
 // }
 .title {
-  padding: 0 30px;
+  text-align: center;
   font-size: 30px;
   color: $side-color;
   margin-bottom: 25px;
-  border-bottom: 3px solid $side-color;
+  border-bottom: 5px solid $main-color;
+  background-color: #000;
+  border-radius: 5px;
 }
 .select {
   width: 100%;

@@ -19,7 +19,8 @@ function Revenue() {
       .then((response) => response.json())
       .then((data) => setValue(data));
   }, []);
-
+  const newarr = [];
+  const id = [];
   useEffect(() => {
     const priceArr = value.filter((item) => {
       if (input === "") {
@@ -28,6 +29,16 @@ function Revenue() {
         item.idChiTietChieuNavigation.ngayChieu.slice(0, 7).includes(input)
       ) {
         return item;
+      }
+    });
+
+    priceArr.map((ticket) => {
+      return id.push(ticket.idChiTietChieuNavigation.idPhim);
+    });
+    id.forEach((item, i) => {
+      if (newarr.indexOf(item) === -1) {
+        newarr.push(item);
+        console.log(newarr);
       }
     });
     const total = priceArr.reduce((acc, cur) => {

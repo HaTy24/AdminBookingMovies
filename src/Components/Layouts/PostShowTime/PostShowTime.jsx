@@ -60,7 +60,6 @@ function PostShowTime() {
   const handleValue = (e) => {
     let newdata = { ...value };
     newdata[e.target.id] = e.target.value;
-
     film.forEach((j) => {
       if (newdata.idPhim == j.idPhim) {
         setImg(j.image);
@@ -206,7 +205,10 @@ function PostShowTime() {
           </select>
           <button className="postMovie-btn">Thêm Suất Chiếu</button>
         </form>
-        <img style={{ display: "block" }} src={img} alt="" />
+        <div className="postMovie-img">
+          <label htmlFor="">Poster</label>
+          <img style={{ display: "block" }} src={img} alt="" />
+        </div>
       </div>
     </>
   );

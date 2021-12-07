@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Axios from "axios";
+import BaseUrl from "../../api/BaseURL";
 
 function Account() {
   const [value, setValue] = useState([]);
@@ -16,7 +17,7 @@ function Account() {
   const [reload, setReload] = useState(); //load lai trang
 
   useEffect(() => {
-    fetch("https://bookingmovieticket.azurewebsites.net/api/User")
+    fetch(BaseUrl.baseUrl + "/User")
       .then((response) => response.json())
       .then((data) => setValue(data));
   }, [reload]);
@@ -50,9 +51,9 @@ function Account() {
   const handleDelete = (e, item) => {
     e.preventDefault();
     if (window.confirm(`Are you sure want to delete: ${item.hoTen}`)) {
-      Axios.delete(
-        `https://bookingmovieticket.azurewebsites.net/api/Phim/${item.idUser}`
-      ).then(() => handleGet());
+      Axios.delete(BaseUrl.baseUrl + `/User/${item.idUser}`).then(() =>
+        handleGet()
+      );
     }
   };
 

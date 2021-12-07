@@ -102,6 +102,7 @@ function PostMovie() {
           />
           <label htmlFor="thoiluong">Thời lượng</label>
           <select
+            className="postMovie-select"
             id="hour"
             value={value.hour}
             style={{ padding: "5px 8px" }}
@@ -110,6 +111,7 @@ function PostMovie() {
             <option>1</option>;<option>2</option>;
           </select>
           <select
+            className="postMovie-select"
             id="minutes"
             style={{ padding: "5px 8px" }}
             value={value.minutes}
@@ -145,7 +147,10 @@ function PostMovie() {
           />
           <button className="postMovie-btn">Thêm Phim</button>
         </form>
-        <img style={{ display: "block" }} src={img} alt="" />
+        <div className="postMovie-img">
+          <label htmlFor="">Poster</label>
+          <img style={{ display: "block" }} src={img} alt="" />
+        </div>
       </div>
     </>
   );
