@@ -39,7 +39,8 @@ function Ticket() {
       } else if (
         e.idChiTietChieuNavigation.idPhimNavigation.tenPhim
           .toLowerCase()
-          .includes(input.toLowerCase())
+          .includes(input.toLowerCase()) ||
+        e.idUserNavigation.hoTen.toLowerCase().includes(input.toLowerCase())
       ) {
         return e;
       }
@@ -125,7 +126,8 @@ function Ticket() {
                   } else if (
                     val.idChiTietChieuNavigation.idPhimNavigation.tenPhim
                       .toLowerCase()
-                      .includes(input.toLowerCase())
+                      .includes(input.toLowerCase()) ||
+        val.idUserNavigation.hoTen.toLowerCase().includes(input.toLowerCase())
                   ) {
                     return val;
                   }
