@@ -11,6 +11,7 @@ function Navbar() {
           i.classList.remove("active");
         }
         e.target.classList.add("active");
+        handleDelete();
       });
     });
   });
