@@ -88,9 +88,10 @@ function Suat_Chieu() {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
+      textTransform: "uppercase",
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 16,
+      fontSize: 15,
     },
   }));
 

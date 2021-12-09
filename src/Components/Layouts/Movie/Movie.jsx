@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo, useCallback } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -30,7 +30,6 @@ function GetMovie() {
     trailer: "",
     des: "",
   }); //gia tri put phim
-
   const [reload, setReload] = useState(); //load lai trang
   const [open, setOpen] = useState(false); //mo dialog
   const [dialog, setDialog] = useState({
@@ -56,10 +55,6 @@ function GetMovie() {
       .then((response) => response.json())
       .then((data) => setValue(data));
   }, [reload]);
-  // *** reload ***
-  const handleGet = () => {
-    setReload(Math.random());
-  };
   // *** put phim ***
   const handlePut = (e, idPhim) => {
     e.preventDefault();
@@ -71,8 +66,7 @@ function GetMovie() {
       trailer: data.trailer + "!!!" + data.des,
     })
       .then(setOpen(false))
-      .then(console.log(data))
-      .then(() => handleGet());
+      .then(() => setReload(reload + 1));
   };
 
   const arr = [];
@@ -85,7 +79,7 @@ function GetMovie() {
     e.preventDefault();
     if (window.confirm(`Are you sure want to delete: ${item.tenPhim}`)) {
       Axios.delete(BaseUrl.baseUrl + `/Phim/${item.idPhim}`).then(() =>
-        handleGet()
+        setReload(reload + 1)
       );
     }
   };
@@ -99,6 +93,7 @@ function GetMovie() {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
+      textTransform: "uppercase",
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 16,
@@ -118,7 +113,6 @@ function GetMovie() {
   const handleClickOpen = (item) => {
     setOpen(true);
     setDialog(item);
-    // console.log(data);
     setData({
       idtl: item.idTheLoai,
       tenphim: item.tenPhim,
@@ -134,12 +128,16 @@ function GetMovie() {
     setOpen(false);
   };
 
-  const handlePutChange = (e) => {
-    let newdata = { ...data };
-    newdata[e.target.id] = e.target.value;
-    setData(newdata);
-    console.log(newdata);
-  };
+  const handlePutChange = useCallback(
+    (e) => {
+      let newdata = { ...data };
+      newdata[e.target.id] = e.target.value;
+      setData(newdata);
+    },
+    [reload]
+  );
+  console.log(data);
+
   return (
     <div className="movies">
       <div className="search">
@@ -339,4 +337,4 @@ function GetMovie() {
   );
 }
 
-export default GetMovie;
+export default memo(GetMovie);

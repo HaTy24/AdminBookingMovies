@@ -5,6 +5,72 @@
   font-size: 18px;
   margin-left: 30px;
 }
+.print {
+  display: none;
+}
+@media print {
+  .print {
+    display: block;
+    width: 90%;
+    min-height: 100vh;
+    margin: 0 auto;
+    &-title {
+      margin: 40px;
+      display: block;
+      text-align: center;
+      font-size: 35px;
+    }
+    &-table {
+      width: 100%;
+
+      text-align: center;
+      border-collapse: collapse;
+      th {
+        background-color: #fff59d;
+      }
+    }
+    table,
+    td,
+    th {
+      padding: 4px 0;
+      border: 1px solid #aaa;
+    }
+    span {
+      display: block;
+    }
+    &-info {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #aaa;
+    }
+    &-name {
+      padding-left: 50px;
+    }
+    &-price {
+      padding-right: 50px;
+    }
+    &-day {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      text-align: right;
+      padding-right: 40px;
+    }
+    &-signature {
+      text-align: right;
+      padding-right: 90px;
+    }
+    &-des {
+      text-align: right;
+      font-size: 12px;
+      font-style: italic;
+      padding-right: 90px;
+    }
+  }
+
+  /* ... the rest of the rules ... */
+}
 @media screen and (max-width: 767px) {
   .label {
     display: block;

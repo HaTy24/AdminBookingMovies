@@ -48,7 +48,10 @@ function App() {
                   <Route path="/addshowtime" component={PostShowTime} />
                   <Route path="/account" component={Account} />
                   <Route path="/ticket" component={Ticket} />
-                  <Route path="/revenue" component={Revenue} />
+                  <Route
+                    path="/revenue"
+                    component={() => <Revenue name={nameUser} />}
+                  />
                 </Switch>
               </div>
             </div>
