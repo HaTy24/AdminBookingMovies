@@ -92,94 +92,89 @@ function Ticket() {
         <i className="fas fa-search"></i>
       </div>
       <h1 className="title">Doanh Thu Theo Phim</h1>
-      <div className="print">
-        <input
-          className="form-input"
-          disabled
-          value={"Tổng Tiền: " + totalPrice + " VNĐ"}
-        />
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 1280 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>ID</StyledTableCell>
-                <StyledTableCell align="center">Người Đặt</StyledTableCell>
-                <StyledTableCell align="center">Tên Phim</StyledTableCell>
-                <StyledTableCell align="center">Tên Rạp</StyledTableCell>
-                <StyledTableCell align="center">Chổ Ngồi</StyledTableCell>
-                <StyledTableCell align="center">Ngày Chiếu</StyledTableCell>
-                <StyledTableCell align="center">Giờ Bắt Đầu</StyledTableCell>
-                <StyledTableCell align="center">Giá Vé</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody style={{ backgroundColor: "#dfdfdf" }}>
-              {value
-                .filter((val) => {
-                  if (input === "") {
-                    return val;
-                  } else if (
-                    val.idChiTietChieuNavigation.idPhimNavigation.tenPhim
-                      .toLowerCase()
-                      .includes(input.toLowerCase()) ||
-                    val.idUserNavigation.hoTen
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-                  ) {
-                    return val;
-                  }
-                })
-                .map((item, i) => {
-                  return (
-                    <StyledTableRow key={i}>
-                      <StyledTableCell component="th" scope="row">
-                        {item.idVe}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idUserNavigation.hoTen}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idChiTietChieuNavigation.idPhimNavigation.tenPhim}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {
-                          item.idChiTietChieuNavigation.idPhongNavigation
-                            .tenPhong
-                        }
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idChoNgoiNavigation.idGheNavigation.tenGhe}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idChiTietChieuNavigation.ngayChieu.split("T")[0]}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idChiTietChieuNavigation.gioBatDau
-                          .split("T")[1]
-                          .slice(0, 5)}
-                      </StyledTableCell>
-                      <StyledTableCell align="center">
-                        {item.idChiTietChieuNavigation.giaVe + " VNĐ"}
-                      </StyledTableCell>
-                      <StyledTableCell>
-                        <Button
-                          style={{
-                            backgroundColor: "red",
-                            color: "white",
-                          }}
-                          variant="outlined"
-                          onClick={(e) => handleDelete(e, item)}
-                        >
-                          Xóa
-                        </Button>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+      <input
+        className="form-input"
+        disabled
+        value={"Tổng Tiền: " + totalPrice + " VNĐ"}
+      />
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 1280 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>ID</StyledTableCell>
+              <StyledTableCell align="center">Người Đặt</StyledTableCell>
+              <StyledTableCell align="center">Tên Phim</StyledTableCell>
+              <StyledTableCell align="center">Tên Rạp</StyledTableCell>
+              <StyledTableCell align="center">Chổ Ngồi</StyledTableCell>
+              <StyledTableCell align="center">Ngày Chiếu</StyledTableCell>
+              <StyledTableCell align="center">Giờ Bắt Đầu</StyledTableCell>
+              <StyledTableCell align="center">Giá Vé</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody style={{ backgroundColor: "#dfdfdf" }}>
+            {value
+              .filter((val) => {
+                if (input === "") {
+                  return val;
+                } else if (
+                  val.idChiTietChieuNavigation.idPhimNavigation.tenPhim
+                    .toLowerCase()
+                    .includes(input.toLowerCase()) ||
+                  val.idUserNavigation.hoTen
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((item, i) => {
+                return (
+                  <StyledTableRow key={i}>
+                    <StyledTableCell component="th" scope="row">
+                      {item.idVe}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idUserNavigation.hoTen}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChiTietChieuNavigation.idPhimNavigation.tenPhim}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChiTietChieuNavigation.idPhongNavigation.tenPhong}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChoNgoiNavigation.idGheNavigation.tenGhe}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChiTietChieuNavigation.ngayChieu.split("T")[0]}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChiTietChieuNavigation.gioBatDau
+                        .split("T")[1]
+                        .slice(0, 5)}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {item.idChiTietChieuNavigation.giaVe + " VNĐ"}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <Button
+                        style={{
+                          backgroundColor: "red",
+                          color: "white",
+                        }}
+                        variant="outlined"
+                        onClick={(e) => handleDelete(e, item)}
+                      >
+                        Xóa
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

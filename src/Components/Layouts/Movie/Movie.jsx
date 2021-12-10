@@ -66,7 +66,7 @@ function GetMovie() {
       trailer: data.trailer + "!!!" + data.des,
     })
       .then(setOpen(false))
-      .then(() => setReload(reload + 1));
+      .then(() => setReload(Math.random()));
   };
 
   const arr = [];
@@ -79,7 +79,7 @@ function GetMovie() {
     e.preventDefault();
     if (window.confirm(`Are you sure want to delete: ${item.tenPhim}`)) {
       Axios.delete(BaseUrl.baseUrl + `/Phim/${item.idPhim}`).then(() =>
-        setReload(reload + 1)
+        setReload(Math.random())
       );
     }
   };
@@ -128,15 +128,11 @@ function GetMovie() {
     setOpen(false);
   };
 
-  const handlePutChange = useCallback(
-    (e) => {
-      let newdata = { ...data };
-      newdata[e.target.id] = e.target.value;
-      setData(newdata);
-    },
-    [reload]
-  );
-  console.log(data);
+  const handlePutChange = (e) => {
+    let newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setData(newdata);
+  };
 
   return (
     <div className="movies">
@@ -255,7 +251,7 @@ function GetMovie() {
             defaultValue={dialog.idTheLoai}
             className="select"
             id="idtl"
-            onChange={(e) => {
+            onBlur={(e) => {
               handlePutChange(e);
             }}
           >
@@ -272,7 +268,7 @@ function GetMovie() {
             fullWidth
             variant="filled"
             id="tenphim"
-            onChange={(e) => handlePutChange(e)}
+            onBlur={(e) => handlePutChange(e)}
             defaultValue={dialog.tenPhim}
           ></TextField>
           <label>Thời lượng</label>
@@ -288,7 +284,7 @@ function GetMovie() {
               defaultValue={dialog.thoiLuong.split("h")[0]}
               id="hour"
               style={{ padding: "5px 8px" }}
-              onChange={(e) => handlePutChange(e)}
+              onBlur={(e) => handlePutChange(e)}
             >
               <option>1</option>;<option>2</option>;
             </select>
@@ -296,7 +292,7 @@ function GetMovie() {
               defaultValue={dialog.thoiLuong.trim().split("h")[1]}
               id="minutes"
               style={{ padding: "5px 8px" }}
-              onChange={(e) => handlePutChange(e)}
+              onBlur={(e) => handlePutChange(e)}
             >
               {arr.map((item, i) => {
                 return <option key={i}>{item}</option>;
@@ -308,7 +304,7 @@ function GetMovie() {
             fullWidth
             variant="filled"
             id="image"
-            onChange={(e) => handlePutChange(e)}
+            onBlur={(e) => handlePutChange(e)}
             defaultValue={dialog.image}
           ></TextField>
           <label>Trailer</label>
@@ -316,7 +312,7 @@ function GetMovie() {
             fullWidth
             variant="filled"
             id="trailer"
-            onChange={(e) => handlePutChange(e)}
+            onBlur={(e) => handlePutChange(e)}
             defaultValue={dialog.trailer.split("!!!")[0]}
           ></TextField>
           <label>Mô Tả</label>
@@ -324,7 +320,7 @@ function GetMovie() {
             fullWidth
             variant="filled"
             id="des"
-            onChange={(e) => handlePutChange(e)}
+            onBlur={(e) => handlePutChange(e)}
             defaultValue={dialog.trailer.split("!!!")[1]}
           ></TextField>
         </DialogContent>
@@ -337,4 +333,4 @@ function GetMovie() {
   );
 }
 
-export default memo(GetMovie);
+export default GetMovie;
