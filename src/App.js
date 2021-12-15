@@ -11,10 +11,11 @@ import Account from "./Components/Layouts/Account/Account";
 import PostShowTime from "./Components/Layouts/PostShowTime/PostShowTime";
 import Ticket from "./Components/Layouts/Ticket/Ticket";
 import Revenue from "./Components/Layouts/Revenue/Revenue";
+import Chart from "./Components/Layouts/Chart/Chart";
 
 function App() {
   const [login, setLogin] = useState(0);
-  const [nameUser, setNameUser] = useState("");
+  const [nameUser, setNameUser] = useState({});
 
   const handleLogin = (data) => {
     setLogin(data);
@@ -23,16 +24,19 @@ function App() {
     setLogin(0);
   };
 
-  const handleNameUser = (data) => {
-    setNameUser(data);
+  const handleNameUser = (idAdmin, name, password) => {
+    setNameUser({
+      idAdmin: idAdmin,
+      name: name,
+      password: password,
+    });
   };
-
   return (
     <>
       <div>
         {login !== 0 ? (
           <Router>
-            <Header name={nameUser} />
+            <Header name={nameUser} login={handleLogin} />
             <SideBar />
             <div className="App">
               <Link to="/">
@@ -45,12 +49,16 @@ function App() {
                   <Route path="/" component={Movie} exact />
                   <Route path="/addmovies" component={PostMovie} />
                   <Route path="/showtime" component={ShowTime} />
+                  <Route path="/chart" component={Chart} />
                   <Route path="/addshowtime" component={PostShowTime} />
                   <Route path="/account" component={Account} />
-                  <Route path="/ticket" component={Ticket} />
+                  <Route
+                    path="/ticket"
+                    component={() => <Ticket name={nameUser.name} />}
+                  />
                   <Route
                     path="/revenue"
-                    component={() => <Revenue name={nameUser} />}
+                    component={() => <Revenue name={nameUser.name} />}
                   />
                 </Switch>
               </div>

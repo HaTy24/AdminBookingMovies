@@ -7,8 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import BaseUrl from "../../api/BaseURL";
 import ReactToPrint from "react-to-print";
+import BaseUrl from "../../api/BaseURL";
 import "../../Scss/input.scss";
 
 function Revenue({ name }) {
@@ -41,7 +41,7 @@ function Revenue({ name }) {
   const handleMonth = (e) => {
     setInput(e.target.value);
   };
-
+  console.log(input);
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1; //January is 0!

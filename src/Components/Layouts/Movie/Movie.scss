@@ -24,7 +24,7 @@ img {
 
 label {
   margin-top: 10px;
-  color: red;
+  color: $active-color;
 }
 
 @media screen and (max-width: 767px) {

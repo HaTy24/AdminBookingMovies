@@ -50,7 +50,7 @@ function Navbar() {
               Thêm Phim Mới
             </Link>
             <Link className="sidebar-item" to="/showtime">
-              <i className="fas fa-film"></i>
+              <i className="fas fa-calendar-alt"></i>
               Quản Lý Suất Chiếu
             </Link>
             <Link className="sidebar-item" to="/addshowtime">
@@ -58,15 +58,19 @@ function Navbar() {
               Thêm Suất Chiếu
             </Link>
             <Link className="sidebar-item" to="/ticket">
-              <i className="fas fa-film"></i>
-              Doanh thu theo phim
+              <i className="fab fa-bitcoin"></i>
+              Doanh thu
             </Link>
-            <Link className="sidebar-item" to="/revenue">
-              <i className="fas fa-film"></i>
+            {/* <Link className="sidebar-item" to="/revenue">
+              <i className="fab fa-bitcoin"></i>
               Doanh thu theo tháng
+            </Link> */}
+            <Link className="sidebar-item" to="/chart">
+              <i className="fas fa-chart-bar"></i>
+              Thống kê
             </Link>
             <Link className="sidebar-item" to="/account">
-              <i className="fas fa-film"></i>
+              <i className="fas fa-user"></i>
               Quản Lý Tài Khoản
             </Link>
           </div>

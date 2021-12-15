@@ -71,7 +71,7 @@ function GetMovie() {
 
   const arr = [];
   for (let i = 0; i <= 59; i++) {
-    arr.push(i);
+    arr.push(i < 10 ? `0${i}` : `${i}`);
   }
 
   // *** delete phim ***

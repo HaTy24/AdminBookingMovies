@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,41 +10,32 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import BaseUrl from "../../api/BaseURL";
 import Axios from "axios";
+import ReactToPrint from "react-to-print";
 import "../../Scss/input.scss";
 
-function Ticket() {
+function Ticket({ name }) {
   const [value, setValue] = useState([]);
   const [input, setInput] = useState("");
-
-  const [reload, setReload] = useState(); //load lai trang
+  const [reload, setReload] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
-  useEffect(() => {
-    fetch(BaseUrl.baseUrl + "/Ve")
-      .then((response) => response.json())
-      .then((data) => setValue(data));
-  }, [reload]);
-  const handleSearch = (e) => {
-    setInput(e.target.value);
-  };
+  const componentRef = useRef();
+  const month = input
+    ? "Tháng " + input.split("-")[1] + " - " + input.split("-")[0]
+    : "";
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
 
-  useEffect(() => {
-    const priceArr = value.filter((e) => {
-      if (input === "") {
-        return e;
-      } else if (
-        e.idChiTietChieuNavigation.idPhimNavigation.tenPhim
-          .toLowerCase()
-          .includes(input.toLowerCase()) ||
-        e.idUserNavigation.hoTen.toLowerCase().includes(input.toLowerCase())
-      ) {
-        return e;
-      }
-    });
-    const total = priceArr.reduce((acc, cur) => {
-      return acc + cur.idChiTietChieuNavigation.giaVe;
-    }, 0);
-    setTotalPrice(total);
-  });
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+
+  today = dd + ", tháng " + mm + ", năm " + yyyy;
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -60,11 +51,37 @@ function Ticket() {
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
     },
-    // // hide last border
-    // "&:last-child td, &:last-child th": {
-    //   border: 0,
-    // },
   }));
+
+  useEffect(() => {
+    fetch(BaseUrl.baseUrl + "/Ve")
+      .then((response) => response.json())
+      .then((data) => setValue(data));
+  }, [reload]);
+
+  useEffect(() => {
+    const priceArr = value.filter((e) => {
+      if (input === "") {
+        return e;
+      } else if (
+        e.idChiTietChieuNavigation.idPhimNavigation.tenPhim
+          .toLowerCase()
+          .includes(input.toLowerCase()) ||
+        e.idUserNavigation.hoTen.toLowerCase().includes(input.toLowerCase()) ||
+        e.idChiTietChieuNavigation.ngayChieu.slice(0, 7).includes(input)
+      ) {
+        return e;
+      }
+    });
+    const total = priceArr.reduce((acc, cur) => {
+      return acc + cur.idChiTietChieuNavigation.giaVe;
+    }, 0);
+    setTotalPrice(total);
+  });
+
+  const handleSearch = (e) => {
+    setInput(e.target.value);
+  };
 
   const handleDelete = (e, item) => {
     e.preventDefault();
@@ -77,6 +94,10 @@ function Ticket() {
 
   const handleGet = () => {
     setReload(Math.random());
+  };
+
+  const handleMonth = (e) => {
+    setInput(e.target.value);
   };
 
   return (
@@ -92,11 +113,34 @@ function Ticket() {
         <i className="fas fa-search"></i>
       </div>
       <h1 className="title">Doanh Thu Theo Phim</h1>
-      <input
-        className="form-input"
-        disabled
-        value={"Tổng Tiền: " + totalPrice + " VNĐ"}
-      />
+      <div className="form">
+        <label htmlFor="start" className="label">
+          Choose Month
+        </label>
+        <div className="form-group">
+          <input
+            className="form-input"
+            onChange={(e) => handleMonth(e)}
+            type="month"
+            id="start"
+            name="start"
+          ></input>
+          <input
+            className="form-input"
+            disabled
+            value={"Tổng Tiền: " + totalPrice + " VNĐ"}
+          />
+        </div>
+        <ReactToPrint
+          trigger={() => (
+            <button className="form-button">
+              In Doanh Thu
+              <i className="fas fa-print"></i>
+            </button>
+          )}
+          content={() => componentRef.current}
+        />
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 1280 }} aria-label="customized table">
           <TableHead>
@@ -123,7 +167,10 @@ function Ticket() {
                     .includes(input.toLowerCase()) ||
                   val.idUserNavigation.hoTen
                     .toLowerCase()
-                    .includes(input.toLowerCase())
+                    .includes(input.toLowerCase()) ||
+                  val.idChiTietChieuNavigation.ngayChieu
+                    .slice(0, 7)
+                    .includes(input)
                 ) {
                   return val;
                 }
@@ -175,6 +222,50 @@ function Ticket() {
           </TableBody>
         </Table>
       </TableContainer>
+      <div className="print" ref={componentRef}>
+        <span className="print-title">Báo Cáo Doanh Thu {month}</span>
+        <table className="print-table">
+          <tr>
+            <th>Người Đặt</th>
+            <th>Tên Phim</th>
+            <th>Ngày Chiếu</th>
+            <th>Giá Vé</th>
+          </tr>
+          {value
+            .filter((item) => {
+              if (input === "") {
+                return item;
+              } else if (
+                item.idChiTietChieuNavigation.ngayChieu
+                  .slice(0, 7)
+                  .includes(input)
+              ) {
+                return item;
+              }
+            })
+            .map((item, i) => {
+              return (
+                <tr>
+                  <td>{item.idUserNavigation.hoTen}</td>
+                  <td>
+                    {item.idChiTietChieuNavigation.idPhimNavigation.tenPhim}
+                  </td>
+                  <td>
+                    {item.idChiTietChieuNavigation.ngayChieu.split("T")[0]}
+                  </td>
+                  <td>{item.idChiTietChieuNavigation.giaVe + " VNĐ"}</td>
+                </tr>
+              );
+            })}
+        </table>
+        <div className="print-info">
+          <span className="print-name">Người in: {name}</span>
+          <span className="print-price">Tổng tiền: {totalPrice} VNĐ</span>
+        </div>
+        <span className="print-day">Ngày lập: {today}</span>
+        <span className="print-signature">Chữ Ký Quản Lý</span>
+        <span className="print-des">(Ký và ghi rõ họ tên)</span>
+      </div>
     </div>
   );
 }

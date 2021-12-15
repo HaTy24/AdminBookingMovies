@@ -25,7 +25,7 @@ function PostShowTime() {
     "https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"
   );
   var today = new Date();
-  var dd = today.getDate();
+  var dd = today.getDate() + 1;
   var mm = today.getMonth() + 1; //January is 0!
   var yyyy = today.getFullYear();
 

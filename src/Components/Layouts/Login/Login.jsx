@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 import BaseUrl from "../../api/BaseURL";
 
 const theme = createTheme();
@@ -21,11 +22,13 @@ export default function SignIn({ login, nameUser }) {
     password: "",
   });
   const [account, setAccount] = useState([]);
+
   const handleSubmit = (event, e) => {
     event.preventDefault();
     account.forEach((item) => {
       if (item.userName === user.email && item.password === user.password) {
         login(1);
+        nameUser(item.idAdmin, item.userName, item.password);
       }
     });
   };
@@ -34,15 +37,15 @@ export default function SignIn({ login, nameUser }) {
     let newData = { ...user };
     newData[e.target.id] = e.target.value;
     setUser(newData);
-    nameUser(newData.email);
     setErrors({ ...errors, [e.target.id]: "" });
-    console.log(newData);
   };
   useEffect(() => {
     fetch(BaseUrl.baseUrl + `/Admin`)
       .then((response) => response.json())
       .then((value) => setAccount(value));
   }, []);
+
+  console.log(account);
 
   const handleErrors = (e) => {
     if (e.target.value === "" && [e.target.id] == "email") {
