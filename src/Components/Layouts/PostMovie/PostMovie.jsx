@@ -10,7 +10,7 @@ function PostMovie() {
     thoiLuong: "",
     image: "",
     hour: "1",
-    minutes: "0",
+    minutes: "00",
     trailer: "",
     des: "",
   });
@@ -67,7 +67,7 @@ function PostMovie() {
 
   const arr = [];
   for (let i = 0; i <= 59; i++) {
-    arr.push(i);
+    arr.push(i < 10 ? "0" + i : i);
   }
   return (
     <>
