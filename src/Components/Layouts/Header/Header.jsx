@@ -50,7 +50,7 @@ function Header(props) {
           setTimeout(() => {
             props.change(0);
           }, 2000)
-        ).then(alert("Đổi mật khẩu thành công !!!")
+        ).then(alert("Đổi mật khẩu thành công !!!"))
         .then(setOpen(false));
     } else {
       setError("Mật khẩu không khớp hoặc xác nhận mật khẩu mới sai !!!");
