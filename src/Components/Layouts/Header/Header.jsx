@@ -46,7 +46,11 @@ function Header(props) {
         userName: props.name.name,
         password: data.new,
       })
-        .then(props.change(0))
+        .then(
+          setTimeout(() => {
+            props.change(0);
+          }, 2000)
+        ).then(alert("Đổi mật khẩu thành công !!!")
         .then(setOpen(false));
     } else {
       setError("Mật khẩu không khớp hoặc xác nhận mật khẩu mới sai !!!");
