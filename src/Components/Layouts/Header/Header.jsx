@@ -46,7 +46,7 @@ function Header(props) {
         userName: props.name.name,
         password: data.new,
       })
-        .then(props.login(0))
+        .then(props.change(0))
         .then(setOpen(false));
     } else {
       setError("Mật khẩu không khớp hoặc xác nhận mật khẩu mới sai !!!");

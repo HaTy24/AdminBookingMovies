@@ -24,6 +24,12 @@ function App() {
     setLogin(0);
   };
 
+  const handleChangePass = (val) => {
+    setLogin(val);
+  };
+
+  console.log(login);
+
   const handleNameUser = (idAdmin, name, password) => {
     setNameUser({
       idAdmin: idAdmin,
@@ -36,7 +42,7 @@ function App() {
       <div>
         {login !== 0 ? (
           <Router>
-            <Header name={nameUser} login={handleLogin} />
+            <Header name={nameUser} change={handleChangePass} />
             <SideBar />
             <div className="App">
               <Link to="/">
